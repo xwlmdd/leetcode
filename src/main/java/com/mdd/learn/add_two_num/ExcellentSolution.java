@@ -2,10 +2,11 @@ package com.mdd.learn.add_two_num;
 
 class ExcellentSolution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        // 链表头节点
         ListNode resultNode = new ListNode(0);
         ListNode curr = resultNode;
         int scale = 0;
-        while (l1 != null && l2 != null) {
+        while (l1 != null || l2 != null) {
             int num1 = l1 != null ? l1.val : 0;
             int num2 = l2 != null ? l2.val : 0;
 
@@ -17,8 +18,15 @@ class ExcellentSolution {
             curr.next = new ListNode(nodeVal);
             curr = curr.next;
 
-            l1 = l1.next;
-            l2 = l2.next;
+            if (l1 != null) {
+                l1 = l1.next;
+            }
+            if (l2 != null) {
+                l2 = l2.next;
+            }
+        }
+        if (scale > 0) {
+            curr.next = new ListNode(scale);
         }
         return resultNode.next;
     }
